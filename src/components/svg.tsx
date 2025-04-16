@@ -331,3 +331,111 @@ export function SVGPicture({
     </Svg>
   );
 }
+
+/**
+ * This is a arrow left icon
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon
+ * @param props - props of the icon
+ */
+export function SVGArrowLeft({
+  width = 24,
+  height = 24,
+  color = "#000",
+  ...props
+}) {
+  return (
+    <Svg width={width} height={height} viewBox="-4.5 0 20 20" {...props}>
+      <Path
+        d="M249.366 6538.708c.405.39 1.06.39 1.464 0l8.563-8.264a1.95 1.95 0 000-2.827l-8.625-8.325a1.063 1.063 0 00-1.454-.01.976.976 0 00-.011 1.425l7.894 7.617a.975.975 0 010 1.414l-7.831 7.557a.974.974 0 000 1.413"
+        transform="translate(-305 -6679) translate(56 160)"
+        fill={color}
+        stroke="none"
+        strokeWidth={1}
+        fillRule="evenodd"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * This is a google icon
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon
+ * @param props - props of the icon
+ */
+export function SVGGoogle({
+  width = 24,
+  height = 24,
+  color = "#000",
+  ...props
+}) {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 20 20" {...props}>
+      <Path
+        d="M263.822 7247.004h-9.61c0 1 0 2.998-.007 3.998h5.569c-.213.999-.97 2.398-2.039 3.103-.001-.001-.002.006-.004.005-1.421.938-3.297 1.151-4.69.871-2.183-.433-3.91-2.016-4.612-4.027.004-.003.007-.031.01-.033-.439-1.248-.439-2.918 0-3.917.565-1.837 2.345-3.513 4.53-3.972 1.759-.373 3.743.031 5.202 1.396.194-.19 2.685-2.622 2.872-2.82-4.985-4.515-12.966-2.926-15.953 2.903l-.006.011a9.767 9.767 0 00.01 8.964l-.01.008a10.18 10.18 0 006.48 5.165c3.01.79 6.843.25 9.41-2.072l.003.003c2.175-1.958 3.529-5.296 2.845-9.586"
+        transform="translate(-300 -7399) translate(56 160)"
+        fill={color}
+        stroke="none"
+        strokeWidth={1}
+        fillRule="evenodd"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * This is a apple icon
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon
+ * @param props - props of the icon
+ */
+export function SVGApple({
+  width = 24,
+  height = 24,
+  color = "#000",
+  ...props
+}) {
+  return (
+    <Svg width={width} height={height} viewBox="-1.5 0 20 20" {...props}>
+      <Path
+        d="M57.57 7282.193c.73-.845 1.221-2.022 1.087-3.193-1.05.04-2.322.671-3.075 1.515-.677.749-1.267 1.946-1.108 3.094 1.172.087 2.368-.57 3.097-1.416m2.628 7.432c.03 3.027 2.77 4.034 2.801 4.047-.022.07-.438 1.435-1.444 2.845-.87 1.218-1.774 2.43-3.196 2.457-1.398.025-1.848-.794-3.447-.794-1.597 0-2.097.768-3.42.819-1.373.049-2.42-1.318-3.296-2.532-1.794-2.483-3.164-7.017-1.324-10.077.915-1.52 2.548-2.482 4.321-2.506 1.348-.025 2.621.869 3.445.869.825 0 2.372-1.075 3.998-.917.68.027 2.591.263 3.818 1.984-.1.059-2.28 1.275-2.256 3.805"
+        transform="translate(-102 -7439) translate(56 160)"
+        fill={color}
+        stroke="none"
+        strokeWidth={1}
+        fillRule="evenodd"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * This is a facebook icon
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon
+ * @param props - props of the icon
+ */
+export function SVGFacebook({
+  width = 24,
+  height = 24,
+  color = "#000",
+  ...props
+}) {
+  return (
+    <Svg width={width} height={height} viewBox="-5 0 20 20" {...props}>
+      <Path
+        d="M335.821 7259v-9h2.733l.446-4h-3.179v-1.948c0-1.03.027-2.052 1.466-2.052h1.458v-2.86c0-.043-1.253-.14-2.52-.14-2.645 0-4.302 1.657-4.302 4.7v2.3H329v4h2.923v9h3.898z"
+        transform="translate(-385 -7399) translate(56 160)"
+        fill={color}
+        stroke="none"
+        strokeWidth={1}
+        fillRule="evenodd"
+      />
+    </Svg>
+  );
+}

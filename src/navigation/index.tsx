@@ -21,6 +21,8 @@ import { Chat } from "./screens/Chat";
 import { Chats } from "../screens/Chats";
 import { ProductCamera } from "./screens/ProductCamera";
 import { ProductForm } from "./screens/ProductForm";
+import { Onboarding } from "../screens/Onboarding";
+import { Login } from "../screens/Login";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -97,10 +99,27 @@ const HomeTabs = createBottomTabNavigator({
 
 const RootStack = createNativeStackNavigator({
   screens: {
+    Onboarding: {
+      screen: Onboarding,
+      options: {
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarColor: 'transparent',
+        statusBarStyle: 'dark',
+      },
+    },
+    Login: {
+      screen: Login,
+      options: {
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarColor: 'transparent',
+        statusBarStyle: 'dark',
+      },
+    },
     HomeTabs: {
       screen: HomeTabs,
       options: {
-        title: "Home",
         headerShown: false,
         statusBarTranslucent: true,
         statusBarColor: 'transparent',
@@ -209,6 +228,7 @@ const RootStack = createNativeStackNavigator({
       },
     },
   },
+  initialRouteName: "Onboarding",
 });
 
 export const Navigation = createStaticNavigation(RootStack);
