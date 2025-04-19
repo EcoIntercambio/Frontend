@@ -9,13 +9,18 @@
     "newArchEnabled": true,
     "scheme": "ecointercambio",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.eddybel.ecointercambio",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,6 +35,14 @@
         }
       ],
       "react-native-edge-to-edge"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a6ae5d94-667f-427b-8357-2787b5286b22"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a6ae5d94-667f-427b-8357-2787b5286b22"
+    }
   }
 }
