@@ -5,12 +5,8 @@ import {
   StaticParamList,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Image } from "react-native";
-import bell from "../assets/bell.png";
-import newspaper from "../assets/newspaper.png";
-import message from "../assets/newspaper.png";
-import profile from "../assets/newspaper.png";
-import heart from "../assets/newspaper.png";
+import { View } from "react-native";
+import { HomeTabIcon, MessageTabIcon, ProfileTabIcon, SettingsTabIcon } from "../components/TabBarIcons";
 import { Home } from "./screens/Home";
 import { Profile } from "./screens/Profile";
 import { Settings } from "./screens/Settings";
@@ -22,7 +18,10 @@ import { Chats } from "../screens/Chats";
 import { ProductCamera } from "./screens/ProductCamera";
 import { ProductForm } from "./screens/ProductForm";
 import { Onboarding } from "../screens/Onboarding";
-import { Login } from "../screens/Login";
+import { LoginScreen } from "../screens/Auth/LoginScreen";
+import { RegisterScreen } from "../screens/Auth/RegisterScreen";
+import { SocialLoginScreen } from "../screens/Auth/SocialLoginScreen";
+import { UpdateProfileScreen } from "../screens/Auth/UserNameScreen";
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -31,16 +30,7 @@ const HomeTabs = createBottomTabNavigator({
       options: {
         headerShown: false,
         title: "Inicio",
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={newspaper}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
+        tabBarIcon: ({ color, size }) => <HomeTabIcon color={color} size={size} />,
       },
     },
     Chats: {
@@ -48,16 +38,7 @@ const HomeTabs = createBottomTabNavigator({
       options: {
         headerShown: false,
         title: "Mensajes",
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={message}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
+        tabBarIcon: ({ color, size }) => <MessageTabIcon color={color} size={size} />,
       },
     },
     Profile: {
@@ -65,33 +46,15 @@ const HomeTabs = createBottomTabNavigator({
       options: {
         headerShown: false,
         title: "Perfil",
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={profile}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
+        tabBarIcon: ({ color, size }) => <ProfileTabIcon color={color} size={size} />,
       },
     },
-    Favorites: {
-      screen: Updates,
+    Settings: {
+      screen: Settings,
       options: {
         headerShown: false,
-        title: "Favoritos",
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={heart}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
+        title: "Configuración",
+        tabBarIcon: ({ color, size }) => <SettingsTabIcon color={color} size={size} />,
       },
     },
   },
@@ -104,17 +67,39 @@ const RootStack = createNativeStackNavigator({
       options: {
         headerShown: false,
         statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
+        statusBarBackgroundColor: "transparent",
       },
     },
     Login: {
-      screen: Login,
+      screen: LoginScreen,
       options: {
         headerShown: false,
         statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
+        statusBarBackgroundColor: "transparent",
+      },
+    },
+    Register: {
+      screen: RegisterScreen,
+      options: {
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarBackgroundColor: "transparent",
+      },
+    },
+    UserName: {
+      screen: UpdateProfileScreen,
+      options: {
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarBackgroundColor: "transparent",
+      },
+    },
+    SocialLogin: {
+      screen: SocialLoginScreen,
+      options: {
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarBackgroundColor: "transparent",
       },
     },
     HomeTabs: {
@@ -122,11 +107,7 @@ const RootStack = createNativeStackNavigator({
       options: {
         headerShown: false,
         statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
-        statusBarTextColor: 'dark',
-        statusBarIconColor: 'dark',
-        statusBarBackgroundColor: 'transparent',
+        statusBarBackgroundColor: "transparent",
       },
     },
     ProductCamera: {
@@ -135,11 +116,11 @@ const RootStack = createNativeStackNavigator({
         title: "Nuevo Producto",
         headerShown: false,
         statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
-        statusBarTextColor: 'dark',
-        statusBarIconColor: 'dark',
-        statusBarBackgroundColor: 'transparent',
+        statusBarColor: "transparent",
+        statusBarStyle: "dark",
+        statusBarTextColor: "dark",
+        statusBarIconColor: "dark",
+        statusBarBackgroundColor: "transparent",
       },
     },
     ProductForm: {
@@ -147,12 +128,6 @@ const RootStack = createNativeStackNavigator({
       options: {
         title: "Detalles del Producto",
         headerShown: false,
-        statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
-        statusBarTextColor: 'dark',
-        statusBarIconColor: 'dark',
-        statusBarBackgroundColor: 'transparent',
       },
     },
     Chat: {
@@ -160,12 +135,6 @@ const RootStack = createNativeStackNavigator({
       options: {
         title: "Chat",
         headerShown: false,
-        statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'dark',
-        statusBarTextColor: 'dark',
-        statusBarIconColor: 'dark',
-        statusBarBackgroundColor: 'transparent',
       },
       linking: {
         path: "chat/:userId/:productId",
@@ -185,13 +154,13 @@ const RootStack = createNativeStackNavigator({
         headerShown: false,
         title: "Detalles del Producto",
         statusBarTranslucent: true,
-        statusBarColor: 'transparent',
-        statusBarStyle: 'light',
-        statusBarTextColor: 'light',
-        statusBarIconColor: 'light',
-        statusBarBackgroundColor: 'transparent',
+        statusBarBackgroundColor: "transparent",
+        statusBarColor: "transparent",
+        statusBarStyle: "light",
+        statusBarTextColor: "light",
+        statusBarIconColor: "light",
         contentStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: "#fff",
         },
       },
     },

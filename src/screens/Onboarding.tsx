@@ -13,11 +13,22 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SVGArrowLeft } from "../components/svg";
 import { LinearGradient } from "expo-linear-gradient";
+import { useAuth } from "../hooks/useAuth";
 
 const { width } = Dimensions.get("window");
 
 export const Onboarding = () => {
   const navigation = useNavigation();
+  const { isLoading, isAuthenticated } = useAuth();
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "HomeTabs" }],
+      });
+    }
+  }, [isAuthenticated]);
 
   return (
     <ImageBackground

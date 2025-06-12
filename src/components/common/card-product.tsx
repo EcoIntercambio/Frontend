@@ -4,10 +4,18 @@ import { SVGStar } from "../svg";
 
 interface CardProductProps {
   id: number;
-  image: string;
+  image?: string;
   name: string;
   rating: number;
-  distance: number;
+  distance: string;
+  userId: string;
+  description?: string;
+  location?: string;
+  tags?: string[];
+  type?: string;
+  price?: number | null;
+  metadata?: any;
+  created_at?: string;
 }
 
 export function CardProduct({
@@ -16,6 +24,14 @@ export function CardProduct({
   name,
   rating,
   distance,
+  userId,
+  description,
+  location,
+  tags,
+  type,
+  price,
+  metadata,
+  created_at,
 }: CardProductProps) {
   const navigation = useNavigation();
 
@@ -27,17 +43,31 @@ export function CardProduct({
         name,
         rating,
         distance,
+        userId,
+        description,
+        location,
+        tags,
+        type,
+        price,
+        metadata,
+        created_at,
       },
     });
   };
+
+  console.log("Imagen que llega", image);
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Image
         source={{
-          uri: image,
+          uri:
+            image ||
+            "https://images.pexels.com/photos/8984847/pexels-photo-8984847.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
         }}
+        height={240}
         style={styles.image}
+        // resizeMode="cover"
       />
 
       <View style={styles.productInfo}>
@@ -48,7 +78,7 @@ export function CardProduct({
             <Text style={styles.productRating}>{rating}</Text>
           </View>
         </View>
-        <Text style={styles.productDistance}>A {distance}km de distancia</Text>
+        <Text style={styles.productDistance}>{distance}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -64,8 +94,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: "100%",
-    height: 230,
+    // width: "100%",
+    // height: 230,
     borderRadius: 10,
     objectFit: "cover",
   },

@@ -22,6 +22,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { UserProfile } from "../../components/common/user-profile";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
+import { getUserByUid } from "../../api/backend/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type RootStackParamList = {
   Chat: {
@@ -48,18 +50,44 @@ type RootStackParamList = {
 type Props = StaticScreenProps<{
   product: {
     id: number;
-    image: string;
+    images?: string[];
+    image?: string;
     name: string;
     rating: number;
-    distance: number;
+    distance: string;
+    userId: string;
+    description?: string;
+    location?: string;
+    tags?: string[];
+    type?: string;
+    price?: number | null;
+    metadata?: any;
+    created_at?: string;
   };
   isOwner?: boolean;
 }>;
 
 export function ProductDetails({ route }: Props) {
   const { product, isOwner } = route.params;
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = React.useState(false);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [isDescriptionExpanded, setIsDescriptionExpanded] =
+    React.useState(false);
+  const [ownerInfo, setOwnerInfo] = React.useState<any>(null);
+
+  console.log("Product details", product);
+  console.log("isOwner", isOwner);
+
+  React.useEffect(() => {
+    const fetchOwnerInfo = async () => {
+      const token = await AsyncStorage.getItem("userToken");
+      const ownerData = await getUserByUid(product.userId, token || undefined);
+      setOwnerInfo(ownerData);
+
+      console.log("ownerData", ownerData);
+    };
+    fetchOwnerInfo();
+  }, [product.userId]);
 
   const calculateNumberOfStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -77,30 +105,27 @@ export function ProductDetails({ route }: Props) {
   };
 
   const handleOfferPress = () => {
-    const userId = "user123";
-    const userName = "Usuario Ejemplo";
-    
-    navigation.navigate('Chat', {
-      userId,
-      userName,
+    navigation.navigate("Chat", {
+      userId: product.userId,
+      userName: ownerInfo?.first_name || "Usuario",
       productId: product.id,
       productName: product.name,
-      productImage: product.image,
-      productDescription: fullDescription,
+      productImage: product.image || "",
+      productDescription: product.description || "",
     });
   };
 
   const handleEditPress = () => {
-    navigation.navigate('ProductCamera', {
+    navigation.navigate("ProductCamera", {
       productId: product.id,
-      existingImages: [product.image], // This should include all product images
+      existingImages: [product.image || ""],
       productData: {
         name: product.name,
-        description: fullDescription,
-        location: "23 Av. Cuauhtémoc Pte.", // This should come from the product data
-        categories: ["plant", "eco", "decoration", "recycle"], // This should come from the product data
-        tradeType: "trade", // This should come from the product data
-      }
+        description: product.description || "",
+        location: product.location || "",
+        categories: product.tags || [],
+        tradeType: product.type || "trade",
+      },
     });
   };
 
@@ -117,17 +142,13 @@ export function ProductDetails({ route }: Props) {
           text: "Eliminar",
           style: "destructive",
           onPress: () => {
-            // TODO: Implement delete functionality
-            console.log('Delete product:', product.id);
+            console.log("Delete product:", product.id);
             navigation.goBack();
           },
         },
       ]
     );
   };
-
-  const fullDescription = "🌵¿Te gustan las plantas? Ofrezco cactus y suculentas de diferentes tamaños y especies, perfectas para decorar tu hogar. Todas las plantas están en excelente estado y han sido cuidadas con mucho amor. Incluyo macetas recicladas y consejos de cuidado. ¡Perfectas para principiantes!";
-  const shortDescription = fullDescription.substring(0, 100) + "...";
 
   return (
     <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
@@ -136,19 +157,34 @@ export function ProductDetails({ route }: Props) {
         contentContainerStyle={styles.scrollContent}
       >
         <View style={styles.imageContainer}>
-          <Image source={{ uri: product.image }} style={styles.image} />
+          <Image
+            source={{
+              uri:
+                product.images?.[0] ||
+                product.image ||
+                "https://i.pinimg.com/564x/6d/c8/ec/6dc8ecaac9d85063dee7d571a6b90984.jpg",
+            }}
+            style={styles.image}
+          />
           <View style={styles.overlay} />
           {isOwner && (
             <View style={styles.ownerActions}>
-              <TouchableOpacity style={styles.actionButton} onPress={handleEditPress}>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={handleEditPress}
+              >
                 <Ionicons name="create-outline" size={24} color="#fff" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.actionButton} onPress={handleDeletePress}>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={handleDeletePress}
+              >
                 <Ionicons name="trash-outline" size={24} color="#fff" />
               </TouchableOpacity>
             </View>
           )}
         </View>
+
         <View style={styles.detailsContainer}>
           <Text style={styles.name}>{product.name}</Text>
 
@@ -158,51 +194,35 @@ export function ProductDetails({ route }: Props) {
           </View>
 
           <View style={styles.userProfileContainer}>
-            <UserProfile />
+            {isOwner ? (
+              <></>
+            ) : (
+              <UserProfile
+                avatar={ownerInfo?.profile?.avatar}
+                name={`${ownerInfo?.first_name} ${ownerInfo?.last_name}`}
+                degree={ownerInfo?.profile?.degree}
+                university={ownerInfo?.profile?.university}
+              />
+            )}
           </View>
 
           <View style={styles.locationContainer}>
             <SVGLocation color="#666" />
-            <Text style={styles.location}>23 Av. Cuauhtémoc Pte.</Text>
-          </View>
-
-          <View style={styles.categoriesContainer}>
-            <View style={styles.categoryItem}>
-              <SVGPlant color="#666" />
-              <Text style={styles.categoryText}>Planta</Text>
-            </View>
-            <View style={styles.categoryItem}>
-              <SVGEco color="#666" />
-              <Text style={styles.categoryText}>Ecológico</Text>
-            </View>
-            <View style={styles.categoryItem}>
-              <SVGDecoration color="#666" />
-              <Text style={styles.categoryText}>Decoración</Text>
-            </View>
-            <View style={styles.categoryItem}>
-              <SVGRecycle color="#666" />
-              <Text style={styles.categoryText}>Reciclado</Text>
-            </View>
+            <Text style={styles.location}>
+              {product.location || "Ubicación no especificada"}
+            </Text>
           </View>
 
           <View style={styles.descriptionContainer}>
             <Text style={styles.descriptionText}>
-              {isDescriptionExpanded ? fullDescription : shortDescription}
+              {product.description || "No hay descripción disponible"}
             </Text>
-            <TouchableOpacity onPress={() => setIsDescriptionExpanded(!isDescriptionExpanded)}>
-              <Text style={styles.readMoreText}>
-                {isDescriptionExpanded ? "Leer menos" : "Leer más"}
-              </Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
 
       {!isOwner && (
-        <TouchableOpacity 
-          style={styles.offerButton}
-          onPress={handleOfferPress}
-        >
+        <TouchableOpacity style={styles.offerButton} onPress={handleOfferPress}>
           <Text style={styles.offerButtonText}>Ofrecer</Text>
         </TouchableOpacity>
       )}

@@ -13,8 +13,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CATEGORIES } from "../../data/categories";
+import { AuthStorage } from "../../util/storage";
+import { getUserProfile } from "../../api/backend/auth";
+import { createProduct } from "../../api/backend/products";
 
 const TRADE_TYPES = [
   { id: "trade", name: "Trueque" },
@@ -35,8 +38,8 @@ type Props = StaticScreenProps<{
 
 export function ProductForm({ route }: Props) {
   const navigation = useNavigation();
-  const { 
-    images = [], 
+  const {
+    images: initialImages = [],
     productId,
     name: initialName = "",
     description: initialDescription = "",
@@ -45,29 +48,53 @@ export function ProductForm({ route }: Props) {
     tradeType: initialTradeType = "trade",
     price: initialPrice = "",
   } = route.params;
-  
+
   const [name, setName] = useState(initialName);
   const [description, setDescription] = useState(initialDescription);
   const [location, setLocation] = useState(initialLocation);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategories);
+  const [selectedCategories, setSelectedCategories] =
+    useState<string[]>(initialCategories);
   const [tradeType, setTradeType] = useState(initialTradeType);
   const [price, setPrice] = useState(initialPrice);
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const INITIAL_CATEGORIES_COUNT = 8;
 
-  const displayedCategories = showAllCategories 
-    ? CATEGORIES 
+  const [images, setImages] = useState<any[]>(() => {
+    return initialImages.map((img: string) => ({
+      uri: img,
+      type: "image/jpeg",
+      name: `image_${Date.now()}.jpg`,
+    }));
+  });
+
+  const displayedCategories = showAllCategories
+    ? CATEGORIES
     : CATEGORIES.slice(0, INITIAL_CATEGORIES_COUNT);
 
   const handleCategoryPress = (categoryId: string) => {
     if (selectedCategories.includes(categoryId)) {
-      setSelectedCategories(selectedCategories.filter(id => id !== categoryId));
+      setSelectedCategories(
+        selectedCategories.filter((id) => id !== categoryId)
+      );
     } else if (selectedCategories.length < 4) {
       setSelectedCategories([...selectedCategories, categoryId]);
     }
   };
 
-  const handlePublish = () => {
+  const updateInfoUser = async () => {
+    const token = await AuthStorage.getToken();
+    if (token) {
+      const profile = await getUserProfile(token);
+      setUser(profile);
+    }
+  };
+
+  useEffect(() => {
+    updateInfoUser();
+  }, []);
+
+  const handlePublish = async () => {
     if (!name || !description || !location || selectedCategories.length === 0) {
       alert("Por favor completa todos los campos requeridos");
       return;
@@ -90,6 +117,21 @@ export function ProductForm({ route }: Props) {
       images,
     });
 
+    const token = await AuthStorage.getToken();
+    if (token) {
+      await createProduct(
+        {
+          name,
+          description,
+          location,
+          type: "product",
+          price: tradeType !== "trade" ? price : undefined,
+          tags: selectedCategories,
+          images,
+        },
+        token
+      );
+    }
     navigation.goBack();
   };
 
@@ -109,13 +151,10 @@ export function ProductForm({ route }: Props) {
           <View style={{ width: 24 }} />
         </View>
 
-        <ScrollView 
-          style={styles.content}
-          keyboardShouldPersistTaps="handled"
-        >
+        <ScrollView style={styles.content} keyboardShouldPersistTaps="handled">
           <View style={styles.imagePreview}>
             <FlatList
-              data={images}
+              data={initialImages}
               horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
@@ -166,19 +205,25 @@ export function ProductForm({ route }: Props) {
                     key={category.id}
                     style={[
                       styles.categoryButton,
-                      selectedCategories.includes(category.id) && styles.categoryButtonSelected,
+                      selectedCategories.includes(category.id) &&
+                        styles.categoryButtonSelected,
                     ]}
                     onPress={() => handleCategoryPress(category.id)}
                   >
                     <Ionicons
                       name={category.icon}
                       size={20}
-                      color={selectedCategories.includes(category.id) ? "#fff" : "#666"}
+                      color={
+                        selectedCategories.includes(category.id)
+                          ? "#fff"
+                          : "#666"
+                      }
                     />
                     <Text
                       style={[
                         styles.categoryText,
-                        selectedCategories.includes(category.id) && styles.categoryTextSelected,
+                        selectedCategories.includes(category.id) &&
+                          styles.categoryTextSelected,
                       ]}
                     >
                       {category.name}
@@ -239,7 +284,10 @@ export function ProductForm({ route }: Props) {
         </ScrollView>
 
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.publishButton} onPress={handlePublish}>
+          <TouchableOpacity
+            style={styles.publishButton}
+            onPress={handlePublish}
+          >
             <Text style={styles.publishButtonText}>Publicar</Text>
           </TouchableOpacity>
         </View>
@@ -377,4 +425,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textDecorationLine: "underline",
   },
-}); 
+});

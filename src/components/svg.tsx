@@ -439,3 +439,101 @@ export function SVGFacebook({
     </Svg>
   );
 }
+
+/**
+ * This is a arrow right icon
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon
+ * @param props - props of the icon
+ */
+export function SVGArrowRight({
+  width = 24,
+  height = 24,
+  color = "#000",
+  ...props
+}) {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 24 24" {...props}>
+      <Path
+        d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+        fill={color}
+        stroke="none"
+        strokeWidth={1}
+        fillRule="evenodd"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * This is an eye icon for password visibility
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon (string for stroke color, array [strokeColor, fillColor] for both)
+ * @param props - props of the icon
+ */
+export function SVGEye({
+  width = 24,
+  height = 24,
+  color = "#000" as string | [string, string],
+  ...props
+}) {
+  const strokeColor = Array.isArray(color) ? color[0] : color;
+  const fillColor = Array.isArray(color) ? color[1] : "transparent";
+
+  return (
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill={fillColor} {...props}>
+      <Path
+        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+        stroke={strokeColor}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12 15a3 3 0 100-6 3 3 0 000 6z"
+        stroke={strokeColor}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+/**
+ * This is an eye-off icon for password visibility
+ * @param width - width of the icon
+ * @param height - height of the icon
+ * @param color - color of the icon (string for stroke color, array [strokeColor, fillColor] for both)
+ * @param props - props of the icon
+ */
+export function SVGEyeOff({
+  width = 24,
+  height = 24,
+  color = "#000" as string | [string, string],
+  ...props
+}) {
+  const strokeColor = Array.isArray(color) ? color[0] : color;
+  const fillColor = Array.isArray(color) ? color[1] : "transparent";
+
+  return (
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill={fillColor} {...props}>
+      <Path
+        d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"
+        stroke={strokeColor}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M1 1l22 22"
+        stroke={strokeColor}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

@@ -37,6 +37,8 @@
       "react-native-edge-to-edge"
     ],
     "extra": {
+      "API_URL": "http://192.168.1.66:5000",
+      "API_VERSION": "v1",
       "eas": {
         "projectId": "a6ae5d94-667f-427b-8357-2787b5286b22"
       }

@@ -5,7 +5,7 @@
     "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 150.00,
+    "price": 150.0,
     "status": "both"
   },
   {
@@ -22,7 +22,7 @@
     "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 200.00,
+    "price": 200.0,
     "status": "sale"
   },
   {
@@ -39,7 +39,7 @@
     "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 175.00,
+    "price": 175.0,
     "status": "both"
   },
   {
@@ -56,7 +56,7 @@
     "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 300.00,
+    "price": 300.0,
     "status": "sale"
   },
   {
@@ -73,7 +73,7 @@
     "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 250.00,
+    "price": 250.0,
     "status": "both"
   },
   {
@@ -90,7 +90,211 @@
     "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
     "rating": 4.5,
     "distance": 1.5,
-    "price": 400.00,
+    "price": 400.0,
+    "status": "sale"
+  },
+  {
+    "id": 12,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 1,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 150.0,
+    "status": "both"
+  },
+  {
+    "id": 2,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 3,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 200.0,
+    "status": "sale"
+  },
+  {
+    "id": 4,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 5,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 175.0,
+    "status": "both"
+  },
+  {
+    "id": 6,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 7,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 300.0,
+    "status": "sale"
+  },
+  {
+    "id": 8,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 9,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 250.0,
+    "status": "both"
+  },
+  {
+    "id": 10,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 11,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 400.0,
+    "status": "sale"
+  },
+  {
+    "id": 12,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 1,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 150.0,
+    "status": "both"
+  },
+  {
+    "id": 2,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 3,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 200.0,
+    "status": "sale"
+  },
+  {
+    "id": 4,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 5,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 175.0,
+    "status": "both"
+  },
+  {
+    "id": 6,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 7,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 300.0,
+    "status": "sale"
+  },
+  {
+    "id": 8,
+    "name": "Producto 4",
+    "image": "https://images.pexels.com/photos/8885271/pexels-photo-8885271.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 9,
+    "name": "Producto 1",
+    "image": "https://images.pexels.com/photos/1974508/pexels-photo-1974508.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 250.0,
+    "status": "both"
+  },
+  {
+    "id": 10,
+    "name": "Producto 2",
+    "image": "https://images.pexels.com/photos/8720273/pexels-photo-8720273.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "status": "exchange"
+  },
+  {
+    "id": 11,
+    "name": "Producto 3",
+    "image": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4.5,
+    "distance": 1.5,
+    "price": 400.0,
     "status": "sale"
   },
   {
